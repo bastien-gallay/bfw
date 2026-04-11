@@ -34,48 +34,57 @@ The key design decisions:
 
 ```text
 bfw/
-├── SKILL.md              # The main skill prompt — the brain
-├── techniques.md         # Technique library (20 techniques, 5 phases)
-├── README.md             # This file
-├── LICENSE               # MIT
-├── examples/             # Real session outputs
-│   └── site-ideas-prioritization.md
-└── install/              # Installers for supported hosts
-    └── install-claude-code.sh
+├── .claude-plugin/
+│   ├── plugin.json              # Claude Code plugin manifest
+│   └── marketplace.json         # Single-plugin marketplace catalog
+├── skills/
+│   └── brainstorm/
+│       ├── SKILL.md             # The main skill prompt — the brain
+│       └── techniques.md        # Technique library (20 techniques, 5 phases)
+├── README.md                    # This file
+├── CHANGELOG.md
+├── CLAUDE.md                    # Orientation for Claude Code sessions
+├── LICENSE                      # MIT
+├── justfile                     # Release automation
+└── examples/                    # Real session outputs
+    └── site-ideas-prioritization.md
 ```
 
 ## Installation
 
-### Claude Code (personal user skills)
+`bfw` ships on two parallel install channels from the same repo, so
+you can use it whether your assistant speaks Claude Code plugins or
+the cross-host `skills` CLI.
+
+### Claude Code (recommended)
 
 ```bash
-git clone https://github.com/you/bfw.git ~/dev/bfw
-bash ~/dev/bfw/install/install-claude-code.sh
+/plugin marketplace add bastiengallay/bfw
+/plugin install bfw@bfw
 ```
 
-This copies `SKILL.md` and `techniques.md` to
-`~/.claude/skills/brainstorm/` and makes `/brainstorm` available in
-every Claude Code session.
+This installs the `bfw` plugin from its own marketplace and exposes
+the `brainstorm` skill. Claude can invoke it automatically from the
+description, or you can call it explicitly via `/bfw:brainstorm`.
+Claude Code auto-updates the plugin at session start.
 
-### Claude Code (per-project skill)
+### Everywhere else (45+ hosts via `skills`)
 
 ```bash
-cd your-project/
-mkdir -p .claude/skills/brainstorm
-cp ~/dev/bfw/{SKILL.md,techniques.md} .claude/skills/brainstorm/
+npx skills add bastiengallay/bfw
 ```
 
-The skill is now available as `/brainstorm` inside this project only.
+Works in Cursor, Codex, Cline, Continue, Copilot, Windsurf, Warp,
+Gemini CLI, Roo Code, and [dozens more](https://github.com/vercel-labs/skills).
+Run `npx skills update` periodically to pull the latest version —
+unlike the Claude Code plugin path, updates here are manual.
 
-### Other AI coding assistants
+### Manual / other hosts
 
-`bfw` is just two markdown files. Any assistant that can load a
-system prompt or skill file can use it:
-
-- **Cursor / Windsurf:** add `SKILL.md` as a custom command or rule
-- **Gemini CLI:** copy to `.gemini/commands/brainstorm.md`
-- **Plain ChatGPT / Claude.ai:** paste `SKILL.md` as a system prompt,
-  then attach `techniques.md` as context
+`bfw` is just two markdown files under `skills/brainstorm/`. Any
+assistant that can load a system prompt or skill file can use it —
+point it at `skills/brainstorm/SKILL.md` (and keep `techniques.md`
+next to it).
 
 ## Usage
 
@@ -124,7 +133,8 @@ Recipes can always be overridden with `TECHNIQUES="six-hats,moscow"`.
 
 ## Technique library
 
-20 techniques across 5 phases. See [techniques.md](techniques.md) for
+20 techniques across 5 phases. See
+[skills/brainstorm/techniques.md](skills/brainstorm/techniques.md) for
 the full reference.
 
 **Diverge** — Starbursting, SCAMPER, Reverse Brainstorm, What-Would-X-Do,
