@@ -9,19 +9,31 @@ build step, no runtime code, no tests. The "product" is two markdown
 files that get installed as a skill into Claude Code (or any compatible
 host) and loaded as a prompt at session time:
 
-- `SKILL.md` — the facilitator prompt. Defines the session flow, the
-  argument contract (`TOPIC`, `IDEAS`, `DURATION`, `OUTPUT`,
-  `TECHNIQUES`), the problem-shape recipes, and the output document
-  template. This is "the brain".
-- `techniques.md` — the technique library (20 techniques across 5
-  phases: diverge / analyze / converge / crystallize / adaptive). Each
-  entry has Purpose / When / How / Duration / Output shape. `SKILL.md`
-  references this file by name at session start and treats it as
-  hot-swappable content.
+- `skills/brainstorm/SKILL.md` — the facilitator prompt. Defines the
+  session flow, the argument contract (`TOPIC`, `IDEAS`, `DURATION`,
+  `OUTPUT`, `TECHNIQUES`), the problem-shape recipes, and the output
+  document template. This is "the brain".
+- `skills/brainstorm/techniques.md` — the technique library (20
+  techniques across 5 phases: diverge / analyze / converge /
+  crystallize / adaptive). Each entry has Purpose / When / How /
+  Duration / Output shape. `SKILL.md` references this file by name at
+  session start and treats it as hot-swappable content.
 
 These two files are tightly coupled by convention: the recipe tables in
 `SKILL.md` name techniques that must exist in `techniques.md` with the
 expected phase and output shape. When editing one, check the other.
+
+The repo also contains two manifest files that make `bfw` installable
+as a Claude Code plugin **and** as a cross-host skill via
+[vercel-labs/skills](https://github.com/vercel-labs/skills):
+
+- `.claude-plugin/plugin.json` — Claude Code plugin manifest. Plugin
+  name is `bfw`; the skill inside is auto-discovered at
+  `skills/brainstorm/`.
+- `.claude-plugin/marketplace.json` — single-plugin marketplace catalog
+  that lets users run `/plugin marketplace add bastiengallay/bfw` then
+  `/plugin install bfw@bfw`. Plugin source is `"./"` because the
+  plugin root IS the marketplace root.
 
 ## Architecture invariants worth preserving
 
@@ -41,14 +53,35 @@ expected phase and output shape. When editing one, check the other.
 - **Problem-shape table is the routing layer.** The shape table in
   README.md, `SKILL.md` Phase 1, and CHANGELOG must stay in sync when
   recipes change.
+- **Repo layout must simultaneously satisfy Claude Code plugin
+  conventions AND vercel-labs/skills discovery.** Both look for
+  `skills/<name>/SKILL.md` at the repo root, so the brainstorm skill
+  lives at `skills/brainstorm/`. Moving it breaks both install paths
+  at once. Adding a second skill means adding a sibling directory
+  under `skills/`, not nesting.
+- **Version fields must stay aligned.** `.claude-plugin/plugin.json`
+  `version`, `.claude-plugin/marketplace.json` `metadata.version`, and
+  `.claude-plugin/marketplace.json` `plugins[0].version` are all
+  bumped together by `just release X.Y.Z`. Do not edit them by hand —
+  Claude Code caches by version, and a skipped bump means users
+  silently freeze on the old code.
 
 ## Installation model
 
-`install/install-claude-code.sh` copies `SKILL.md` and `techniques.md`
-to either `~/.claude/skills/brainstorm/` (default) or
-`./.claude/skills/brainstorm/` (`--project`). This is the only
-"executable" in the repo. If file names or the two-file structure
-changes, the installer must change with them.
+`bfw` distributes through two channels that both target the same
+`skills/brainstorm/` directory:
+
+- **Claude Code plugin** via `/plugin marketplace add bastiengallay/bfw`
+  then `/plugin install bfw@bfw`. Auto-updates at session start.
+  Driven by `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
+- **Cross-host** via `npx skills add bastiengallay/bfw` (vercel-labs/skills),
+  which discovers `skills/brainstorm/SKILL.md` and copies it to the
+  target host's skill directory. Updates are manual
+  (`npx skills update`).
+
+Releases go through `just release X.Y.Z` which bumps both manifests
+atomically and creates an annotated git tag. There is no build step
+and no separate installer script.
 
 ## Working on the markdown
 
