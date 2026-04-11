@@ -1,0 +1,61 @@
+# bfw release automation.
+#
+# Usage: just release 0.2.0
+#
+# Bumps version in .claude-plugin/plugin.json and .claude-plugin/marketplace.json
+# atomically, commits, and creates an annotated git tag. Prevents the
+# "forgot to bump plugin.json on release" silent-freeze failure mode
+# identified in the distribution brainstorm (2026-04-11).
+
+set shell := ["bash", "-uc"]
+
+default:
+    @just --list
+
+# Release a new version: bump manifests, commit, tag.
+release VERSION:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if [[ ! "{{VERSION}}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+        echo "error: VERSION must be semver (X.Y.Z or X.Y.Z-prerelease), got '{{VERSION}}'" >&2
+        exit 2
+    fi
+
+    if ! git diff-index --quiet HEAD --; then
+        echo "error: working tree is dirty, commit or stash first" >&2
+        exit 2
+    fi
+
+    if git rev-parse "v{{VERSION}}" >/dev/null 2>&1; then
+        echo "error: tag v{{VERSION}} already exists" >&2
+        exit 2
+    fi
+
+    plugin=".claude-plugin/plugin.json"
+    market=".claude-plugin/marketplace.json"
+
+    tmp="$(mktemp)"
+    jq --arg v "{{VERSION}}" '.version = $v' "$plugin" > "$tmp" && mv "$tmp" "$plugin"
+
+    tmp="$(mktemp)"
+    jq --arg v "{{VERSION}}" '.metadata.version = $v | .plugins[0].version = $v' "$market" > "$tmp" && mv "$tmp" "$market"
+
+    git add "$plugin" "$market"
+    git commit -m "chore: release v{{VERSION}}"
+    git tag -a "v{{VERSION}}" -m "Release v{{VERSION}}"
+
+    echo "✓ Tagged v{{VERSION}}. Push with: git push && git push --tags"
+
+# Verify plugin.json and marketplace.json versions agree.
+check-versions:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    p=$(jq -r .version .claude-plugin/plugin.json)
+    m=$(jq -r .metadata.version .claude-plugin/marketplace.json)
+    mp=$(jq -r .plugins[0].version .claude-plugin/marketplace.json)
+    if [[ "$p" != "$m" || "$p" != "$mp" ]]; then
+        echo "version mismatch: plugin.json=$p marketplace.metadata=$m marketplace.plugins[0]=$mp" >&2
+        exit 1
+    fi
+    echo "✓ versions aligned: $p"
