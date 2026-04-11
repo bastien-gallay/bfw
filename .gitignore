@@ -1,0 +1,15 @@
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Build / cache
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Local session outputs (users run brainstorms here)
+brainstorm/
+wip/
