@@ -81,7 +81,8 @@ as a Claude Code plugin **and** as a cross-host skill via
 
 Releases go through `just release X.Y.Z` which bumps both manifests
 atomically and creates an annotated git tag. There is no build step
-and no separate installer script.
+and no separate installer script. Full release procedure and CI
+integration plans live in `docs/RELEASING.md`.
 
 ## Working on the markdown
 
