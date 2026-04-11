@@ -1,0 +1,28 @@
+{
+  "name": "bfw",
+  "owner": {
+    "name": "Bastien Gallay"
+  },
+  "metadata": {
+    "description": "Brainstorming Framework — single-plugin marketplace.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "bfw",
+      "source": "./",
+      "description": "Facilitated brainstorming skill with adaptive technique sequencing.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "homepage": "https://github.com/bastiengallay/bfw",
+      "repository": "https://github.com/bastiengallay/bfw",
+      "category": "productivity",
+      "tags": [
+        "brainstorm",
+        "ideation",
+        "facilitation",
+        "decision-making"
+      ]
+    }
+  ]
+}
