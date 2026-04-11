@@ -59,7 +59,7 @@ the cross-host `skills` CLI.
 ### Claude Code (recommended)
 
 ```bash
-/plugin marketplace add bastiengallay/bfw
+/plugin marketplace add bastien-gallay/bfw
 /plugin install bfw@bfw
 ```
 
@@ -71,7 +71,7 @@ Claude Code auto-updates the plugin at session start.
 ### Everywhere else (45+ hosts via `skills`)
 
 ```bash
-npx skills add bastiengallay/bfw
+npx skills add bastien-gallay/bfw
 ```
 
 Works in Cursor, Codex, Cline, Continue, Copilot, Windsurf, Warp,
