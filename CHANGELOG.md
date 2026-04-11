@@ -11,9 +11,9 @@
   Retired `install/install-claude-code.sh`. See the 2026-04-11
   distribution brainstorm for rationale.
 - **Install paths** (README):
-  - Claude Code: `/plugin marketplace add bastiengallay/bfw` +
+  - Claude Code: `/plugin marketplace add bastien-gallay/bfw` +
     `/plugin install bfw@bfw` (auto-updates at session start).
-  - Cross-host: `npx skills add bastiengallay/bfw` (manual updates via
+  - Cross-host: `npx skills add bastien-gallay/bfw` (manual updates via
     `npx skills update`).
   - Note the asymmetric update model — documented intentionally.
 

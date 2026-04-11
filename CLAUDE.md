@@ -31,7 +31,7 @@ as a Claude Code plugin **and** as a cross-host skill via
   name is `bfw`; the skill inside is auto-discovered at
   `skills/brainstorm/`.
 - `.claude-plugin/marketplace.json` — single-plugin marketplace catalog
-  that lets users run `/plugin marketplace add bastiengallay/bfw` then
+  that lets users run `/plugin marketplace add bastien-gallay/bfw` then
   `/plugin install bfw@bfw`. Plugin source is `"./"` because the
   plugin root IS the marketplace root.
 
@@ -71,10 +71,10 @@ as a Claude Code plugin **and** as a cross-host skill via
 `bfw` distributes through two channels that both target the same
 `skills/brainstorm/` directory:
 
-- **Claude Code plugin** via `/plugin marketplace add bastiengallay/bfw`
+- **Claude Code plugin** via `/plugin marketplace add bastien-gallay/bfw`
   then `/plugin install bfw@bfw`. Auto-updates at session start.
   Driven by `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
-- **Cross-host** via `npx skills add bastiengallay/bfw` (vercel-labs/skills),
+- **Cross-host** via `npx skills add bastien-gallay/bfw` (vercel-labs/skills),
   which discovers `skills/brainstorm/SKILL.md` and copies it to the
   target host's skill directory. Updates are manual
   (`npx skills update`).
