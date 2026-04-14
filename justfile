@@ -32,6 +32,11 @@ release VERSION:
         exit 2
     fi
 
+    if ! grep -qE "^## v{{VERSION}}( |$)" CHANGELOG.md; then
+        echo "error: CHANGELOG.md has no '## v{{VERSION}}' section — rename '## Unreleased' before releasing" >&2
+        exit 2
+    fi
+
     plugin=".claude-plugin/plugin.json"
     market=".claude-plugin/marketplace.json"
 
