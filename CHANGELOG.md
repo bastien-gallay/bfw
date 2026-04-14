@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.1.1 — 2026-04-14
+
 ### Changed
 
 - **Distribution refactor.** Repo is now a Claude Code plugin **and** a
