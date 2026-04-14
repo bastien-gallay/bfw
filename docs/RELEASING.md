@@ -87,6 +87,10 @@ Users pick up the release via:
 - Semver format.
 - Clean working tree.
 - Tag uniqueness.
+- CHANGELOG.md contains a `## vX.Y.Z` section for the version being
+  released (added after a `release.yml` run failed because the
+  maintainer had run `just release 0.1.1` without first renaming
+  `## Unreleased`).
 - Atomic version bump across both manifests (drift is impossible if
   this target runs to completion).
 - Annotated tag (not lightweight) so `git describe` and GitHub's
@@ -96,7 +100,6 @@ Users pick up the release via:
 
 These are the gaps the planned CI workflows are meant to cover:
 
-- CHANGELOG.md contains a section matching the version being released.
 - The tag version matches the manifest version (currently relies on
   the maintainer passing the same `X.Y.Z` that they bumped).
 - Markdown files pass markdownlint.
