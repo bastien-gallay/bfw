@@ -7,7 +7,7 @@ purpose — this is internal.
 
 ## What a release actually ships
 
-There is no build step. A release is:
+There is no build step in the repo itself. A release is:
 
 1. A bumped `version` in `.claude-plugin/plugin.json`.
 2. A bumped `metadata.version` AND `plugins[0].version` in
@@ -16,6 +16,11 @@ There is no build step. A release is:
 3. A commit on `main` with the above changes.
 4. An annotated git tag `vX.Y.Z` on that commit.
 5. A CHANGELOG.md entry describing what changed.
+6. A `bfw-brainstorm-vX.Y.Z.skill` bundle attached to the GitHub
+   Release — a zip archive with the `.skill` extension
+   (OS-registered to Claude Desktop for double-click install, also
+   accepted by the claude.ai web uploader). Built by `just package`
+   in CI (`.github/workflows/release.yml`) when the tag is pushed.
 
 Users pick up the release via:
 
@@ -28,6 +33,14 @@ Users pick up the release via:
   repo. No version field drives it; it always pulls latest `main`.
   The tag is useful for humans browsing `bastien-gallay/bfw` on
   GitHub, not for this install path.
+- **Claude Desktop / claude.ai channel** — users download
+  `bfw-brainstorm-vX.Y.Z.skill` from the GitHub Release page. On
+  Desktop they double-click it (the `.skill` extension is
+  OS-registered, so it opens an "Add to library" dialog); on the
+  web they upload it via Settings → Capabilities → Skills. Updates
+  are manual (re-download + re-install). The archive layout and
+  SKILL.md description-length constraint are documented in
+  CLAUDE.md "Installation model".
 
 ## Current process (manual)
 
@@ -112,7 +125,9 @@ No workflows exist yet. These are the ones to add under
   forgotten version bump" failure mode identified in the 2026-04-11
   distribution brainstorm.
 
-### 2. `release.yml` — tag push → GitHub Release
+### 2. `release.yml` — tag push → GitHub Release (SHIPPED)
+
+Lives at `.github/workflows/release.yml`.
 
 - **Trigger:** `push` on tags matching `v*.*.*`.
 - **Steps:**
@@ -121,17 +136,25 @@ No workflows exist yet. These are the ones to add under
        `${GITHUB_REF_NAME#v}`. Hard fail on mismatch — this is the
        belt-and-braces check on `just release`.
     3. Run `just check-versions`.
-    4. Extract the `## vX.Y.Z` section from CHANGELOG.md (everything
+    4. Run `just package` to build `dist/bfw-brainstorm-vX.Y.Z.skill`.
+    5. Extract the `## vX.Y.Z` section from CHANGELOG.md (everything
        between that heading and the next `##`-level heading).
-    5. `gh release create "$GITHUB_REF_NAME" --notes-file <extracted>`.
+    6. `gh release create "$GITHUB_REF_NAME" --notes-file <extracted>
+       dist/bfw-brainstorm-v*.skill` — the `.skill` is uploaded as a
+       release asset in the same call.
 - **Rationale:** makes releases visible on GitHub without forcing the
-  maintainer to author release notes twice. CHANGELOG stays the
-  source of truth; the GitHub Release is generated from it.
-- **Failure modes to design for:**
+  maintainer to author release notes twice, AND produces the
+  `.skill` artefact that the Claude Desktop / claude.ai install
+  channel depends on. CHANGELOG stays the source of truth; the
+  GitHub Release is generated from it.
+- **Failure modes handled:**
   - CHANGELOG section missing → hard fail, surfaces the omission
     loudly instead of shipping an empty release.
   - Tag → manifest version mismatch → hard fail, this is the
     scenario that would silently break the plugin cache.
+  - `just package` failure (e.g. malformed SKILL.md frontmatter or
+    missing `zip`/`jq` tool) → stops before `gh release create` so
+    no partial release is published.
 
 ### 3. `schema.yml` — plugin manifest validation (stretch)
 

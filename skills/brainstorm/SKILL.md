@@ -2,9 +2,8 @@
 name: brainstorm
 description: >
   Facilitate a structured brainstorming session with adaptive technique
-  sequencing. Drives ideation from intake through crystallisation with
-  MoSCoW, Impact/Effort, Six Hats, and other techniques from the
-  technique library.
+  sequencing — MoSCoW, Impact/Effort, Six Hats, SCAMPER, and more from
+  a hot-swappable technique library.
 ---
 
 # Brainstorm — Facilitated Ideation Skill
