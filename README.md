@@ -79,6 +79,22 @@ Gemini CLI, Roo Code, and [dozens more](https://github.com/vercel-labs/skills).
 Run `npx skills update` periodically to pull the latest version —
 unlike the Claude Code plugin path, updates here are manual.
 
+### Claude Desktop / claude.ai (web)
+
+Download the latest `bfw-brainstorm-vX.Y.Z.skill` from the
+[releases page](https://github.com/bastien-gallay/bfw/releases/latest).
+
+- **On Desktop:** double-click the file. Claude Desktop opens an
+  **"Add to your library?"** dialog previewing the skill — click
+  **Add to library** and you're done.
+- **On the web:** open **Settings → Capabilities → Skills**, click
+  **+ Create skill**, and upload the `.skill` file.
+
+`.skill` is a zip archive with an OS-registered extension; Desktop
+installs it on double-click without a Settings trip. Updates are
+manual (download the new release, re-install). Available on Pro,
+Max, Team, and Enterprise plans with code execution enabled.
+
 ### Manual / other hosts
 
 `bfw` is just two markdown files under `skills/brainstorm/`. Any

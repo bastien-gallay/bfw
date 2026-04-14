@@ -15,7 +15,15 @@
     `/plugin install bfw@bfw` (auto-updates at session start).
   - Cross-host: `npx skills add bastien-gallay/bfw` (manual updates via
     `npx skills update`).
+  - Claude Desktop / claude.ai: download
+    `bfw-brainstorm-vX.Y.Z.skill` from the latest GitHub Release.
+    On Desktop, double-click opens an "Add to library" dialog
+    (the `.skill` extension is OS-registered). On the web,
+    upload via Settings → Capabilities → Skills. Manual updates.
   - Note the asymmetric update model — documented intentionally.
+- Trimmed `skills/brainstorm/SKILL.md` `description` to ≤200 chars so
+  the skill uploads cleanly to claude.ai (the 200-char frontmatter
+  limit is enforced on upload there but not by Claude Code).
 
 ### Added
 
@@ -23,6 +31,19 @@
   manifests atomically and tags, plus `check-versions` sanity target.
   Prevents the "silent freeze from forgotten version bump" failure
   mode identified in the brainstorm's Devil's Advocate pass.
+- `just package` target that builds a
+  `dist/bfw-brainstorm-vX.Y.Z.skill` bundle (zip archive with the
+  `.skill` extension — OS-registered to Claude Desktop for
+  double-click install, also accepted by the claude.ai web
+  uploader). Skill folder at the archive root, dotfiles excluded.
+  Reads the version from `plugin.json` so the filename cannot
+  drift from the manifest.
+- `.github/workflows/release.yml` — on `v*.*.*` tag push, asserts
+  tag/manifest agreement, runs `just check-versions` and
+  `just package`, extracts the matching CHANGELOG section, and
+  creates a GitHub Release with the `.skill` asset attached. This
+  is the delivery path for the Claude Desktop / claude.ai install
+  channel.
 
 ### Follow-ups (tracked, not blocking this release)
 

@@ -59,3 +59,30 @@ check-versions:
         exit 1
     fi
     echo "✓ versions aligned: $p"
+
+# Build the skill bundle as a .skill file into dist/.
+# A .skill file is a plain zip archive with a .skill extension,
+# OS-registered to Claude Desktop for one-click install via
+# double-click and also accepted by the claude.ai web uploader.
+# Archive layout: brainstorm/SKILL.md at the root (no skills/ prefix).
+# The artefact is uploaded to each GitHub Release by
+# .github/workflows/release.yml.
+package:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    version=$(jq -r .version .claude-plugin/plugin.json)
+    if [[ -z "$version" || "$version" == "null" ]]; then
+        echo "error: could not read version from plugin.json" >&2
+        exit 1
+    fi
+
+    mkdir -p dist
+    out="dist/bfw-brainstorm-v${version}.skill"
+    rm -f "$out"
+
+    (cd skills && zip -r "../$out" brainstorm \
+        -x 'brainstorm/.*' 'brainstorm/**/.*')
+
+    echo "✓ built $out"
+    unzip -l "$out"

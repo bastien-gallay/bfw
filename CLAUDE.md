@@ -68,7 +68,7 @@ as a Claude Code plugin **and** as a cross-host skill via
 
 ## Installation model
 
-`bfw` distributes through two channels that both target the same
+`bfw` distributes through three channels that all target the same
 `skills/brainstorm/` directory:
 
 - **Claude Code plugin** via `/plugin marketplace add bastien-gallay/bfw`
@@ -78,11 +78,22 @@ as a Claude Code plugin **and** as a cross-host skill via
   which discovers `skills/brainstorm/SKILL.md` and copies it to the
   target host's skill directory. Updates are manual
   (`npx skills update`).
+- **Claude Desktop / claude.ai (web)** via a `.skill` file — a zip
+  archive with an OS-registered extension. Double-clicking opens
+  Claude Desktop's "Add to library" dialog; the web uploader also
+  accepts `.skill` directly. Built by `just package` and attached
+  to each GitHub Release by `.github/workflows/release.yml`. The
+  archive root must be the `brainstorm/` folder (claude.ai
+  requires this layout) and the SKILL.md `description` field must
+  stay ≤200 chars (enforced on upload). Updates are manual
+  (re-download + re-install).
 
 Releases go through `just release X.Y.Z` which bumps both manifests
-atomically and creates an annotated git tag. There is no build step
-and no separate installer script. Full release procedure and CI
-integration plans live in `docs/RELEASING.md`.
+atomically and creates an annotated git tag. The tag push then
+triggers `release.yml`, which re-packages and publishes the zip.
+There is no build step in the repo itself and no separate installer
+script. Full release procedure and CI integration plans live in
+`docs/RELEASING.md`.
 
 ## Working on the markdown
 
