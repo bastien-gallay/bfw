@@ -305,3 +305,23 @@ use it, how to run it (AI facilitator instructions), and typical duration.
   AI proposes, user validates.
 - **Duration:** 2-3 min
 - **Output shape:** Two-column table: Hard constraints | Soft constraints.
+
+### Atom Inventory
+
+- **Purpose:** Enumerate the discrete atoms of an artefact before
+  mutating or constraining it.
+- **When:** Topic is an enumerable artefact (schema fields, manifest
+  keys, frontmatter properties, CLI flags, lock-file rows). SCAMPER
+  produces noise on enumerable inputs; inventory first, then operate.
+  Trigger: topic mentions schema / frontmatter / manifest / lock-in
+  *and* IDEAS lists 3+ atoms. **After Atom Inventory, route to
+  Constraint Mapping or Impact / Effort — not SCAMPER** (the inventory
+  is closed; mutation generates noise).
+- **How:** AI extracts every atom from the source-of-truth (3+ minimum
+  to warrant the technique). User confirms or edits the list.
+  Optionally tag each atom with its type and known constraints. Hand
+  the inventory off as input to Constraint Mapping or Impact / Effort.
+- **Duration:** 2-4 min
+- **Output shape:** Bulleted atom list, optionally tagged
+  `atom — type — constraints`.
+- **Phase:** Diverge or intake — runs *before* mutation or scoring.
