@@ -139,13 +139,15 @@ directory (default: `brainstorm/YYYYMMDD-<slug>.md`).
 | Input shape | Trigger | Recipe |
 | --- | --- | --- |
 | **Blank slate** | 0-2 ideas | Starbursting → Free Association → Affinity Group → NUF → Action Items |
-| **Few ideas** | 3-7 ideas | SCAMPER → Six Hats (top 3-4) → Impact/Effort → Action Items |
-| **Many ideas** | 8+ ideas | Affinity Group → Six Hats (per group) → MoSCoW → Action Items |
+| **Few ideas** | 3-7 ideas | SCAMPER → Impact/Effort → Action Items |
+| **Many ideas** | 8+ ideas | Affinity Group → MoSCoW → Action Items |
 | **Large backlog** | 15+ ideas | Affinity → Dot Vote (cluster) → Impact/Effort (filtered) → MoSCoW |
 | **Binary choice** | Exactly 2 ideas | PCI → Devil's Advocate → Binary Comparison |
 | **Decision under constraints** | Constraints mentioned | Constraint Mapping → Reverse Brainstorm → Decision Matrix |
 
 Recipes can always be overridden with `TECHNIQUES="six-hats,moscow"`.
+Six Hats is opt-in only — request it explicitly via `TECHNIQUES` or
+ask for stress-testing at intake.
 
 ## Technique library
 

@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+### Changed
+
+- **Default `DURATION` lowered 20 → 12 min** with per-shape overrides in
+  the SHAPE table (Blank slate 15, Few ideas 12, Many ideas 20 / 25 if
+  15+, Binary / pre-formed 10–12, Decision under constraints 15).
+  Explicit `DURATION` always wins. Driven by retro signals across
+  real-world session corpora.
+- **Six Hats demoted to opt-in only.** Removed from the Few-ideas and
+  Many-ideas default recipes in `SKILL.md` and `README.md`; reframed in
+  `techniques.md` as a cluster-only technique (4–8 themes max, never
+  per-item). Empirical signal: across multiple session corpora, Six Hats
+  was overwhelmingly skipped (0% in one, ~22% kept in another). Use
+  `TECHNIQUES="six-hats,..."` to opt in.
+
 ## v0.1.1 — 2026-04-14
 
 ### Changed

@@ -76,22 +76,29 @@ use it, how to run it (AI facilitator instructions), and typical duration.
 
 ## Analyze — Understand and Challenge
 
-### Six Thinking Hats (de Bono)
+### Six Thinking Hats (de Bono) — **opt-in only**
 
-- **Purpose:** Systematic multi-perspective analysis of each idea.
-- **When:** Need balanced evaluation, avoid groupthink, ideas need stress
-  testing.
-- **How:** For each idea (or the top N), apply all six hats:
+> **Not in any default recipe.** Use only when the user explicitly asks
+> for stress-testing, or as a cluster-level pass after Affinity (4–8
+> themes max — never per-item). Empirical signal: 0/13 lucid-lint
+> sessions, 7/9 cisac sessions skipped it. Per-idea application is
+> tedious and rarely changes the outcome.
+
+- **Purpose:** Systematic multi-perspective analysis of a small,
+  pre-grouped set of clusters.
+- **When:** User explicitly requests it; or after Affinity has produced
+  4–8 themes that warrant balanced evaluation.
+- **How:** For each cluster (4–8 max), apply all six hats:
   - White — Facts and data: what do we know?
   - Red — Feelings and intuition: gut reaction?
   - Yellow — Benefits and value: what's the upside?
   - Black — Risks and caution: what could go wrong?
   - Green — Creativity: how could we improve this?
-  - Blue — Process: what's the next step for this idea?
-  AI fills each hat, user reacts and adjusts. For large idea lists, apply
-  to top 3-5 only.
-- **Duration:** 5-10 min (depends on idea count)
-- **Output shape:** Table per idea with one row per hat.
+  - Blue — Process: what's the next step for this cluster?
+  AI fills each hat, user reacts and adjusts. **Refuse per-item
+  application on lists of 8+ ideas** — collapse to clusters first.
+- **Duration:** 5-10 min (cluster count dependent)
+- **Output shape:** Table per cluster with one row per hat.
 
 ### First Principles
 

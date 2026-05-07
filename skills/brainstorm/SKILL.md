@@ -62,8 +62,8 @@ Based on the consolidated input, classify into one of these shapes:
 | Shape | Trigger | Duration (override) | Default Recipe |
 | --- | --- | --- | --- |
 | **Blank slate** | 0-2 ideas after intake | 15 | Starbursting → Free Association → Affinity Group → NUF → Action Items |
-| **Few ideas** | 3-7 ideas | 12 (default) | SCAMPER → Six Hats (top 3-4) → Impact/Effort → Action Items |
-| **Many ideas** | 8+ ideas | 20 (25 if 15+) | Affinity Group → Six Hats (per group) → MoSCoW → Action Items |
+| **Few ideas** | 3-7 ideas | 12 (default) | SCAMPER → Impact/Effort → Action Items |
+| **Many ideas** | 8+ ideas | 20 (25 if 15+) | Affinity Group → MoSCoW → Action Items |
 | **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate → Binary Comparison |
 | **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Reverse Brainstorm → Decision Matrix |
 
@@ -76,8 +76,13 @@ adaptation rules during the session).
 
 **Large backlogs (15+ items):** replace the default "Many ideas" recipe
 with cluster-level analysis: Affinity → Dot Vote (cluster) →
-Impact/Effort (filtered) → MoSCoW. Six Hats on 30+ items is tedious
-and rarely changes the outcome.
+Impact/Effort (filtered) → MoSCoW.
+
+**Six Hats is opt-in only.** Do not include it in any default recipe.
+Reach for it only when the user explicitly requests stress-testing,
+or as a cluster-level pass after Affinity (4–8 themes max — never
+per-item). Empirical signal: 0/13 lucid-lint sessions, 7/9 cisac
+sessions skipped it.
 
 **Announce the shape and plan:**
 
