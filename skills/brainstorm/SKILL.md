@@ -77,10 +77,22 @@ Based on the consolidated input, classify into one of these shapes:
 | **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate (after PCI yields a leader) → Binary Comparison |
 | **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Impact/Effort → MoSCoW → Action Items |
 | **Schema / lock-in** | Topic mentions schema / frontmatter / manifest / lock-in *and* IDEAS lists 3+ atoms | 25–30 | Atom Inventory → Constraint Mapping → Impact/Effort → Pre-mortem (`day-1-blocker`) |
+| **Naming** | Topic mentions name / naming / rename / identifier / slug (or IDEAS is empty for blank-slate naming) | 15 | Free Association (extended) → Affinity Grouping → PCI on top 3 → Action Items |
 
 If the user passed an explicit `DURATION`, honour it. Otherwise apply
-the per-shape override above. Shapes not yet present in this table
-(e.g. `naming` 15) will land with their own recipes.
+the per-shape override above.
+
+**Naming sessions don't run SCAMPER.** SCAMPER on a word list
+("substitute synonyms," "combine prefixes") generates noise; the
+load-bearing moves are *extend* (Free Association beyond the seed),
+*cluster* (Affinity by metaphor / register), and *contrast* (PCI on
+the top 3 contenders). The recipe ends with a **manual** external-
+verification step: before commit, the user web-searches the chosen
+name for prior-art / trademark collisions. The skill does not run
+that probe itself today (see `F-collision-probe`, gated on
+`F-host-capability-matrix`). *Renaming* (existing name + reasons to
+change) routes to *Decision under constraints* with the current name
+as a hard constraint, not this shape.
 
 **Schema / lock-in is not "Few ideas".** When IDEAS lists enumerable
 atoms of a structured artefact (schema fields, manifest keys, CLI
