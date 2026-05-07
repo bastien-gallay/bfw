@@ -88,6 +88,25 @@ adaptation rules during the session).
 with cluster-level analysis: Affinity → Dot Vote (cluster) →
 Impact/Effort (filtered) → MoSCoW.
 
+**I/E vs MoSCoW — decision vs formalisation.** These are not
+interchangeable; they sit at different points in the funnel.
+
+| Tool | Role | Use when | Output |
+| --- | --- | --- | --- |
+| **Impact / Effort** | **Decision** — what do we do? | Ranking, choosing, dropping. Items still in flux. | A ranked / quadranted set, with some items dropped. |
+| **MoSCoW** | **Formalisation** — how do we communicate the chosen set? | After a decision exists. Need to commit it to scope language a stakeholder understands. | Must / Should / Could / Won't buckets. |
+
+Common smells to flag:
+
+- Using **MoSCoW first** on raw ideas (skips the decision — everything
+  becomes "Should").
+- Using **I/E** to *publish* a roadmap (loses the Won't bucket and the
+  necessity language stakeholders expect).
+- Running **both back-to-back** when there are <5 items: collapse to
+  one. The "Decision under constraints" recipe deliberately runs both
+  because the constraint-filtered set is small but still needs scope
+  communication.
+
 **Six Hats is opt-in only.** Do not include it in any default recipe.
 Reach for it only when the user explicitly requests stress-testing,
 or as a cluster-level pass after Affinity (4–8 themes max — never

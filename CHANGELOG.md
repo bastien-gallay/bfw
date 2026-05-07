@@ -15,6 +15,11 @@
   per-item). Empirical signal: across multiple session corpora, Six Hats
   was overwhelmingly skipped (0% in one, ~22% kept in another). Use
   `TECHNIQUES="six-hats,..."` to opt in.
+- **I/E vs MoSCoW distinction codified** in Phase 1. Added a table +
+  smells callout: Impact/Effort is a decision tool (rank / drop /
+  choose); MoSCoW is a formalisation tool (communicate the chosen
+  scope). Flags common mistakes — MoSCoW-first on raw ideas, I/E for
+  roadmaps, and back-to-back use on tiny sets.
 - **"Grounding First" intake rule** added to Phase 0. When the topic
   touches file syntax / schema / encoding / naming convention, the
   facilitator now greps existing files before generating options
