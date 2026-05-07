@@ -20,7 +20,7 @@ high, adapt the plan when needed, and produce an actionable output document.
 | --- | --- | --- | --- |
 | `TOPIC` | yes | — | The brainstorm topic or question |
 | `IDEAS` | no | `""` | Seed ideas (comma-separated or multi-line) |
-| `DURATION` | no | `20` | Target duration in minutes |
+| `DURATION` | no | `12` | Target duration in minutes (per-shape overrides applied at SHAPE — see table below) |
 | `OUTPUT` | no | `brainstorm/YYYYMMDD-<slug>.md` | Output file path (relative to project root) |
 | `TECHNIQUES` | no | auto | Comma-separated technique names to force |
 
@@ -59,13 +59,17 @@ INTAKE → SHAPE → PLAN → [STEP → LOG → REFLECT]* → CRYSTALLIZE → ME
 
 Based on the consolidated input, classify into one of these shapes:
 
-| Shape | Trigger | Default Recipe |
-| --- | --- | --- |
-| **Blank slate** | 0-2 ideas after intake | Starbursting → Free Association → Affinity Group → NUF → Action Items |
-| **Few ideas** | 3-7 ideas | SCAMPER → Six Hats (top 3-4) → Impact/Effort → Action Items |
-| **Many ideas** | 8+ ideas | Affinity Group → Six Hats (per group) → MoSCoW → Action Items |
-| **Binary choice** | Exactly 2 ideas | PCI on each → Devil's Advocate → Binary Comparison |
-| **Decision under constraints** | User mentioned constraints | Constraint Mapping → Reverse Brainstorm → Decision Matrix |
+| Shape | Trigger | Duration (override) | Default Recipe |
+| --- | --- | --- | --- |
+| **Blank slate** | 0-2 ideas after intake | 15 | Starbursting → Free Association → Affinity Group → NUF → Action Items |
+| **Few ideas** | 3-7 ideas | 12 (default) | SCAMPER → Six Hats (top 3-4) → Impact/Effort → Action Items |
+| **Many ideas** | 8+ ideas | 20 (25 if 15+) | Affinity Group → Six Hats (per group) → MoSCoW → Action Items |
+| **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate → Binary Comparison |
+| **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Reverse Brainstorm → Decision Matrix |
+
+If the user passed an explicit `DURATION`, honour it. Otherwise apply
+the per-shape override above. Shapes not yet present in this table
+(e.g. `schema` 25–30, `naming` 15) will land with their own recipes.
 
 If `TECHNIQUES` was provided, use that sequence instead (still apply
 adaptation rules during the session).
