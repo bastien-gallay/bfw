@@ -241,13 +241,14 @@ Append a meta-analysis section to the session document:
 
 ## Session Meta-Analysis
 
-- **Duration:** X min (planned: Y min)
+- **Duration:** X min
 - **Techniques used:** [list with durations]
 - **Techniques skipped:** [list with reason]
 - **Adaptations made:** [what changed and why]
 - **Problem shape:** [detected shape] → [actual shape if it shifted]
-- **Convergence point:** Step N ([technique]) — this is where the
-  decision crystallized
+- **Convergence point:** Step N (technique) — *the technique
+  parenthetical is mandatory; this line is the load-bearing retro
+  signal and must stay greppable*
 - **What worked well:** [specific observation]
 - **What could improve:** [specific observation]
 - **Session energy:** [high/medium/low, with notes]
@@ -397,8 +398,9 @@ to review past sessions:
    - Most effective techniques by problem shape
    - Common adaptations
    - Recurring user preferences
-   - Convergence-point signal (which technique step crystallised the
-     decision)
+   - **Convergence-technique distribution by problem shape** (grep
+     `^- \*\*Convergence point:\*\*` across the corpus; tally the
+     technique parenthetical by shape)
 4. Propose updates to default recipes or facilitator behavior.
 5. Save findings to memory for future sessions.
 
