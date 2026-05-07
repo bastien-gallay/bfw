@@ -40,7 +40,7 @@ use it, how to run it (AI facilitator instructions), and typical duration.
   Also known as **Inversion** in ideation contexts.
 - **When:** Stuck on a hard problem, need fresh angle, defensive thinking.
   Also fires as the anti-anchoring step on coupled carryover (see
-  `INTAKE` step 3.5 + the anti-anchoring rule below the SHAPE table).
+  `INTAKE` step 4 + the anti-anchoring rule below the SHAPE table).
 - **How:** Flip the goal ("How could we make this *worse*?"). List ways to
   fail, then invert each into a solution or safeguard.
 - **Duration:** 3-5 min
