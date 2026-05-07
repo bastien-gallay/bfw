@@ -156,8 +156,22 @@ use it, how to run it (AI facilitator instructions), and typical duration.
   - **Could** — Nice-to-have
   - **Won't** — Explicitly out of scope (this round)
   AI proposes classification, user confirms/moves items.
+  **Archive with intent.** When shelving an item to *Won't* (or
+  *Could*) with a named retrigger, append ` — revisit-when:
+  <observable trigger>` where `<observable>` is a date, named event,
+  or count. Reject vague triggers ("later", "maybe", "someday") at
+  facilitator discretion. Human-first, no parser; greppable across
+  sessions via `^- .* — revisit-when: `.
 - **Duration:** 3-5 min
 - **Output shape:** Four groups with items listed under each.
+  Annotated example:
+
+  ```text
+  Won't (this round)
+  - Item A
+  - Item B — revisit-when: 3rd retro data point
+  - Item C — revisit-when: after vendor X ships v2
+  ```
 
 ### Impact / Effort Matrix
 
