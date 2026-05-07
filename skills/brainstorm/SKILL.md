@@ -166,6 +166,16 @@ sessions skipped it.
 Do NOT ask for confirmation — act as trusted facilitator. The user can
 interrupt if they disagree.
 
+**Anti-anchoring on coupled carryover.** If INTAKE step 4
+(coupled-carryover lift) fired *and* the resulting `Carried hard
+constraints` block is non-empty, run **Reverse Brainstorm** (Inversion)
+on the lifted constraint set **once, just-after-lift, before the
+recipe's first technique**. Two-column table: "How would these
+constraints make the project fail?" / "Inverted seed". The output
+seeds Phase 2 STEP — feed any surviving inversions into the first
+recipe step as additional candidates. Time-boxed: ~3 min. Skip in
+retrospective mode (same gate as the lift).
+
 ### Phase 2: STEP — Execute Techniques
 
 For each planned technique:
