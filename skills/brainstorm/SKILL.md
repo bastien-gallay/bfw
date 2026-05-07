@@ -50,18 +50,39 @@ INTAKE → SHAPE → PLAN → [STEP → LOG → REFLECT]* → CRYSTALLIZE → ME
    structure*, *commit message*, *changelog format*. Announce + act
    ("Let me check what's already in place — `grep -r ...`"); do not
    ask permission. If grounding is not applicable, skip silently.
-4. If `IDEAS` is empty, run a quick **Free Association** round: ask the
+4. **Coupled-carryover lift (conditional).** Glob the configured output
+   directory (`${BFW_OUTPUT_DIR:-brainstorm}/`) for prior session files
+   matching the current `TOPIC` slug stem (date prefix stripped) — for
+   `TOPIC="naming for the schema lock"` the glob is
+   `*-schema-lock*.md`. Skip recursion (top-level only). Also accept
+   user mention ("we did this last week" → ask for path). If the glob
+   yields ≥1 match, parse the prior session's `## Outcome → Selected
+   Ideas / Decisions` block (CRYSTALLIZE bullets at Phase 5 — **not**
+   META) and emit a **`Carried hard constraints`** block. One bullet
+   per Selected Idea, each citing `source: <path>:<line>`. Announce
+   verbatim and offer per-line `keep / drop / soften`. The block
+   becomes the constraint baseline for the rest of intake.
+   - **Skip in retrospective mode** (`TOPIC="--retrospective"`): that
+     mode reads the dir as a corpus, not as priors.
+   - **Empty glob and no user mention:** skip silently.
+   - **>3 matches:** ask the user to pick (max 3 surfaced).
+   - **CRYSTALLIZE section absent in a match:** degrade with a
+     one-line warning, do not parse META as a fallback.
+   - **Parser scope:** new code, not the retrospective-mode META
+     parser at the end of this file.
+5. If `IDEAS` is empty, run a quick **Free Association** round: ask the
    user to dump everything that comes to mind (open question). Capture
    the raw list.
-5. If `IDEAS` is provided, **extend and reformulate**:
+6. If `IDEAS` is provided, **extend and reformulate**:
    - Deduplicate and merge similar items
    - Rephrase for clarity and consistency
    - Add 2-4 AI-suggested ideas (clearly marked `[AI]`)
    - Sort by affinity
-6. Present the consolidated idea list. Ask the user:
+7. Present the consolidated idea list. Ask the user:
    - "Anything to add, remove, or rephrase?"
-   - "Any hard constraints I should know about?"
-7. Give an encouraging comment about the starting material. Be genuine
+   - "Any hard constraints I should know about?" (Carried constraints
+     from step 4, if any, are already on the table.)
+8. Give an encouraging comment about the starting material. Be genuine
    and specific (not generic "Great ideas!"). Reference something
    concrete from their input.
 
