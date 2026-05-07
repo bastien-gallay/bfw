@@ -74,7 +74,7 @@ Based on the consolidated input, classify into one of these shapes:
 | **Blank slate** | 0-2 ideas after intake | 15 | Starbursting → Free Association → Affinity Group → NUF → Action Items |
 | **Few ideas** | 3-7 ideas | 12 (default) | SCAMPER → Impact/Effort → Action Items |
 | **Many ideas** | 8+ ideas | 20 (25 if 15+) | Affinity Group → MoSCoW → Action Items |
-| **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate → Binary Comparison |
+| **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate (after PCI yields a leader) → Binary Comparison |
 | **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Impact/Effort → MoSCoW → Action Items |
 
 If the user passed an explicit `DURATION`, honour it. Otherwise apply
@@ -182,7 +182,9 @@ After each step (before moving to the next), briefly reflect:
    - **Low energy:** Monosyllabic answers → Simplify remaining steps,
      propose early wrap-up
    - **Too-easy consensus:** Everything scores the same, no tension →
-     Insert Devil's Advocate
+     Insert PCI / Impact-Effort first to surface a leader, then run
+     Devil's Advocate against it. DA without a leader manufactures
+     noise.
 
 2. **Adapt if needed.** When adapting, **announce the change** without
    asking for permission:

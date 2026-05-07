@@ -270,6 +270,9 @@ use it, how to run it (AI facilitator instructions), and typical duration.
 
 - **Purpose:** Stress-test a decision that feels too easy.
 - **When:** Group is converging too fast, need to check for blind spots.
+  Use *after* a leader has emerged from a ranking technique (Decision
+  Matrix / Impact-Effort / PCI); running DA on a still-divergent set
+  manufactures false objections against undifferentiated candidates.
 - **How:** AI argues *against* the current frontrunner. Raises the
   strongest possible objections. User defends or adjusts.
 - **Duration:** 2-3 min
