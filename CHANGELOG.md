@@ -15,6 +15,12 @@
   per-item). Empirical signal: across multiple session corpora, Six Hats
   was overwhelmingly skipped (0% in one, ~22% kept in another). Use
   `TECHNIQUES="six-hats,..."` to opt in.
+- **"Decision under constraints" recipe rewritten** to
+  `Constraint Mapping → Impact/Effort → MoSCoW → Action Items`. Decision
+  Matrix demoted to opt-in only (skipped in 8/9 sessions of one internal
+  corpus — the weight-assignment step burns budget without changing the
+  outcome on small option sets). Use `TECHNIQUES="decision-matrix,..."`
+  to opt in.
 
 ## v0.1.1 — 2026-04-14
 

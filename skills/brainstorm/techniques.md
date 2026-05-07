@@ -179,11 +179,21 @@ use it, how to run it (AI facilitator instructions), and typical duration.
 - **Duration:** 2-4 min
 - **Output shape:** Table: Idea | N | U | F | Total, sorted by total.
 
-### Decision Matrix (Weighted Criteria)
+### Decision Matrix (Weighted Criteria) — **opt-in only**
 
-- **Purpose:** Rigorous multi-criteria comparison.
-- **When:** High-stakes decision, multiple important criteria, need
-  defensible justification.
+> **Not in any default recipe.** Removed from the "Decision under
+> constraints" default in favour of `Constraint Map → I/E → MoSCoW →
+> Action Items`. Empirical signal: skipped in 8/9 sessions of one
+> internal corpus — the weight-assignment step burns budget without
+> changing the outcome on small option sets. Reach for it only when the
+> user explicitly requests defensible multi-criteria scoring (e.g.
+> high-stakes vendor / architecture choice with auditable rationale).
+> Use `TECHNIQUES="decision-matrix,..."` to opt in.
+
+- **Purpose:** Rigorous multi-criteria comparison with auditable
+  weighting.
+- **When:** User explicitly asks for it; high-stakes decision needing
+  defensible justification across 3+ weighted criteria.
 - **How:**
   1. Define criteria (3-5 max)
   2. Assign weights (must sum to 100%)

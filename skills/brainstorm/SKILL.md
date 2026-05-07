@@ -65,7 +65,7 @@ Based on the consolidated input, classify into one of these shapes:
 | **Few ideas** | 3-7 ideas | 12 (default) | SCAMPER → Impact/Effort → Action Items |
 | **Many ideas** | 8+ ideas | 20 (25 if 15+) | Affinity Group → MoSCoW → Action Items |
 | **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate → Binary Comparison |
-| **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Reverse Brainstorm → Decision Matrix |
+| **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Impact/Effort → MoSCoW → Action Items |
 
 If the user passed an explicit `DURATION`, honour it. Otherwise apply
 the per-shape override above. Shapes not yet present in this table

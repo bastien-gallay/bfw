@@ -143,7 +143,7 @@ directory (default: `brainstorm/YYYYMMDD-<slug>.md`).
 | **Many ideas** | 8+ ideas | Affinity Group → MoSCoW → Action Items |
 | **Large backlog** | 15+ ideas | Affinity → Dot Vote (cluster) → Impact/Effort (filtered) → MoSCoW |
 | **Binary choice** | Exactly 2 ideas | PCI → Devil's Advocate → Binary Comparison |
-| **Decision under constraints** | Constraints mentioned | Constraint Mapping → Reverse Brainstorm → Decision Matrix |
+| **Decision under constraints** | Constraints mentioned | Constraint Mapping → Impact/Effort → MoSCoW → Action Items |
 
 Recipes can always be overridden with `TECHNIQUES="six-hats,moscow"`.
 Six Hats is opt-in only — request it explicitly via `TECHNIQUES` or
