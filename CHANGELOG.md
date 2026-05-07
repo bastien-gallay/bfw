@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.2.0 — 2026-05-07
+
 ### Added
 
 - **Schema / lock-in problem shape.** New SHAPE row routes
