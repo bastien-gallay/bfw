@@ -367,16 +367,40 @@ At the end of the session, save a memory (type: `feedback`) with:
 When the user runs `/brainstorm` with `TOPIC="--retrospective"` or asks
 to review past sessions:
 
-1. Read all files in the configured output directory (default:
-   `brainstorm/`)
-2. Extract meta-analysis sections
-3. Synthesize patterns:
+1. **Probe capability — do not branch on host name.** Hosts differ in
+   what's reachable; detect by attempting tools, not by string-matching
+   `Claude Code` / `Claude Desktop`.
+   1. Attempt to list the configured output directory (default:
+      `brainstorm/` — see `BFW_OUTPUT_DIR`). If the directory exists
+      and is readable, tier is **session-doc**. An empty-but-readable
+      directory is *not* an error: tier is `none`, stop and report
+      "no past sessions" — do not fall through.
+   2. If the directory is unreachable (no FS read available), attempt
+      a chat-history search (e.g. `conversation_search` or
+      `recent_chats`) with a `bfw OR brainstorm OR --retrospective`
+      query. If the tool responds with results, tier is **chat-level**.
+      Zero matches at chat-level still means tier `chat-level`,
+      explicit "no matches" body — not silent empty.
+   3. **Single retry on transient errors.** If the chat-search call
+      fails with what looks like a transient error (rate-limit,
+      timeout, cold-start), retry exactly once before declaring the
+      tool unavailable. A persistent failure means tier `none` —
+      single-paragraph refusal, no synthesis.
+
+2. **Stamp the tier as the first line of output.** Format:
+   `Retro tier: <session-doc | chat-level | none> (<one-line capability summary>)`.
+   This line MUST be greppable: `^Retro tier:` is the contract. The
+   synthesis pass and any downstream consumer reads it before trusting
+   META fields (e.g. `Convergence point`).
+
+3. **Synthesize patterns** at the resolved tier:
    - Most effective techniques by problem shape
-   - Average session duration vs. planned
    - Common adaptations
    - Recurring user preferences
-4. Propose updates to default recipes or facilitator behavior
-5. Save findings to memory for future sessions
+   - Convergence-point signal (which technique step crystallised the
+     decision)
+4. Propose updates to default recipes or facilitator behavior.
+5. Save findings to memory for future sessions.
 
 ---
 
