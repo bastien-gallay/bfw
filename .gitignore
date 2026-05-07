@@ -14,3 +14,6 @@ dist/
 # Local session outputs (users run brainstorms here)
 brainstorm/
 wip/
+
+.claude/settings.local.json
+.personal/
