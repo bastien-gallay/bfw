@@ -2,8 +2,77 @@
 
 ## Unreleased
 
+### Added
+
+- **Schema / lock-in problem shape.** New SHAPE row routes
+  schema / frontmatter / manifest / lock-in sessions to a fit-for-
+  purpose recipe (`Atom Inventory → Constraint Mapping → Impact/Effort
+  → Pre-mortem (day-1-blocker)`) instead of the wrong-default
+  Few-ideas-runs-SCAMPER path. 25–30 min override. Schema *evolution*
+  stays routed to "Decision under constraints" with the prior schema
+  as a hard constraint.
+- **Naming problem shape.** New SHAPE row with a lean recipe
+  (`Free Association extended → Affinity Grouping → PCI on top 3 →
+  Action Items`). External collision-check is documented as a manual
+  user-side step. *Renaming* (existing name + reasons to change) stays
+  routed to "Decision under constraints".
+- **Atom Inventory technique.** Enumerates the atoms of a structured
+  artefact before any mutation step. Explicit "route to Constraint
+  Mapping or I/E — not SCAMPER" guard in the *When* clause prevents
+  noise on enumerable inputs. Output shape (`atom — type —
+  constraints`) is the exact handoff Constraint Mapping consumes.
+- **Pre-mortem technique** with three scope tags (`day-1-blocker`,
+  `migration-blocker`, `silent-drift`). The Schema-shape recipe reads
+  `day-1-blocker` as a phase selector ("what breaks on first install /
+  parse / run").
+- **Coupled-carryover lift at INTAKE.** When a `BFW_OUTPUT_DIR` glob
+  finds a prior session matching the current TOPIC slug stem (date
+  prefix stripped), the parser reads the prior session's CRYSTALLIZE
+  Selected Ideas and emits a **`Carried hard constraints`** block,
+  citing `source: <path>:<line>` per bullet. Per-line `keep / drop /
+  soften` offered to the user. Retrospective-mode invocations skip
+  the lift. Parser is new code, distinct from the retrospective-mode
+  META parser.
+- **Anti-anchoring step on coupled carryover.** When the lift fires
+  and the constraints block is non-empty, run **Reverse Brainstorm**
+  (Inversion) on the lifted set once, just-after-lift, before the
+  recipe's first technique. Surviving inversions feed Phase 2 as
+  additional candidates. Counters the "ideas remain the same" decay
+  risk on coupled chains. Mechanism-2 (recipe-swap) stays parked.
+- **MoSCoW `revisit-when:` annotation.** Items shelved to *Won't*
+  (or *Could*) MAY carry a trailing `— revisit-when: <observable
+  trigger>` (date, named event, or count). Vague triggers rejected
+  at facilitator discretion. Human-first, no parser; greppable
+  across sessions via `^- .* — revisit-when: `.
+- **`examples/coupled-pair/` fixture.** Two-file fixture (prior
+  session doc + paired topic) so the carryover lift and anti-anchoring
+  step are testable without waiting for organic schema/naming
+  dogfood.
+
 ### Changed
 
+- **Devil's Advocate gated on a named leader.** DA's *When* clause
+  now requires that a ranking technique (Decision Matrix /
+  Impact-Effort / PCI) has surfaced a leader. The Binary-choice
+  recipe annotates DA with `(after PCI yields a leader)`. The REFLECT
+  too-easy-consensus trigger now inserts PCI / I-E *before* DA.
+  Mirrors Pre-mortem's existing precondition wording. Reason: DA on
+  a still-divergent set manufactures false objections against
+  undifferentiated candidates.
+- **Retrospective mode probes capability and stamps tier.** No more
+  host-name branching: the probe attempts a filesystem read, falls
+  back to a chat-history search (`conversation_search` /
+  `recent_chats`) on FS-miss, retries once on transient errors. Output
+  starts with a greppable `Retro tier: <session-doc | chat-level |
+  none> (...)` first line. Empty-but-readable directory is
+  `none` tier (not silent fall-through).
+- **META `Convergence point` is the load-bearing retro signal.**
+  Three-site edit on `SKILL.md`: `(planned: Y min)` removed from
+  Duration; the technique parenthetical on `Convergence point:` is
+  now mandatory and the narrative tail dropped; the retrospective-
+  mode synthesis bullet replaces "Average session duration vs.
+  planned" with "Convergence-technique distribution by problem shape"
+  (greps the corpus by field name). Old META blocks stay parseable.
 - **Default `DURATION` lowered 20 → 12 min** with per-shape overrides in
   the SHAPE table (Blank slate 15, Few ideas 12, Many ideas 20 / 25 if
   15+, Binary / pre-formed 10–12, Decision under constraints 15).
