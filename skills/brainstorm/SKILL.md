@@ -76,10 +76,22 @@ Based on the consolidated input, classify into one of these shapes:
 | **Many ideas** | 8+ ideas | 20 (25 if 15+) | Affinity Group → MoSCoW → Action Items |
 | **Binary choice / pre-formed options** | Exactly 2 ideas | 10–12 | PCI on each → Devil's Advocate (after PCI yields a leader) → Binary Comparison |
 | **Decision under constraints** | User mentioned constraints | 15 | Constraint Mapping → Impact/Effort → MoSCoW → Action Items |
+| **Schema / lock-in** | Topic mentions schema / frontmatter / manifest / lock-in *and* IDEAS lists 3+ atoms | 25–30 | Atom Inventory → Constraint Mapping → Impact/Effort → Pre-mortem (`day-1-blocker`) |
 
 If the user passed an explicit `DURATION`, honour it. Otherwise apply
 the per-shape override above. Shapes not yet present in this table
-(e.g. `schema` 25–30, `naming` 15) will land with their own recipes.
+(e.g. `naming` 15) will land with their own recipes.
+
+**Schema / lock-in is not "Few ideas".** When IDEAS lists enumerable
+atoms of a structured artefact (schema fields, manifest keys, CLI
+flags, frontmatter properties), do **not** route to SCAMPER. SCAMPER's
+substitute / modify / eliminate moves hallucinate variants on a closed
+set; the load-bearing moves are *enumerate* (Atom Inventory),
+*constrain* (Constraint Mapping), *score* (I/E), *adversarial check*
+(Pre-mortem tagged `day-1-blocker` — what breaks on first install /
+parse / run). Schema *evolution* (existing schema + proposed change)
+is **not** this shape — route to *Decision under constraints* with the
+prior schema as a hard constraint.
 
 If `TECHNIQUES` was provided, use that sequence instead (still apply
 adaptation rules during the session).
