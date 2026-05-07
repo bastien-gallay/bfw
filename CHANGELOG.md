@@ -15,6 +15,12 @@
   per-item). Empirical signal: across multiple session corpora, Six Hats
   was overwhelmingly skipped (0% in one, ~22% kept in another). Use
   `TECHNIQUES="six-hats,..."` to opt in.
+- **"Grounding First" intake rule** added to Phase 0. When the topic
+  touches file syntax / schema / encoding / naming convention, the
+  facilitator now greps existing files before generating options
+  instead of proposing abstract alternatives. Announce + act, no
+  permission ask. Reason: repeated retro signal that ungrounded
+  ideation produces options that contradict existing repo conventions.
 - **"Decision under constraints" recipe rewritten** to
   `Constraint Mapping → Impact/Effort → MoSCoW → Action Items`. Decision
   Matrix demoted to opt-in only (skipped in 8/9 sessions of one internal

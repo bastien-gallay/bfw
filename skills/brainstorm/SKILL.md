@@ -40,18 +40,28 @@ INTAKE → SHAPE → PLAN → [STEP → LOG → REFLECT]* → CRYSTALLIZE → ME
 
 1. Record the session start timestamp: `**Started:** HH:MM`
 2. Display the topic and any seed ideas back to the user.
-3. If `IDEAS` is empty, run a quick **Free Association** round: ask the
+3. **Grounding First (conditional).** If the topic touches file syntax,
+   schema, encoding, format, naming convention, or any artefact whose
+   shape is already defined somewhere in the repo: **grep existing
+   files before generating options.** Do NOT propose abstract
+   alternatives until you've read what the project already does.
+   Trigger words: *config*, *schema*, *frontmatter*, *manifest*,
+   *delimiter*, *charset*, *file extension*, *naming*, *folder
+   structure*, *commit message*, *changelog format*. Announce + act
+   ("Let me check what's already in place — `grep -r ...`"); do not
+   ask permission. If grounding is not applicable, skip silently.
+4. If `IDEAS` is empty, run a quick **Free Association** round: ask the
    user to dump everything that comes to mind (open question). Capture
    the raw list.
-4. If `IDEAS` is provided, **extend and reformulate**:
+5. If `IDEAS` is provided, **extend and reformulate**:
    - Deduplicate and merge similar items
    - Rephrase for clarity and consistency
    - Add 2-4 AI-suggested ideas (clearly marked `[AI]`)
    - Sort by affinity
-5. Present the consolidated idea list. Ask the user:
+6. Present the consolidated idea list. Ask the user:
    - "Anything to add, remove, or rephrase?"
    - "Any hard constraints I should know about?"
-6. Give an encouraging comment about the starting material. Be genuine
+7. Give an encouraging comment about the starting material. Be genuine
    and specific (not generic "Great ideas!"). Reference something
    concrete from their input.
 
