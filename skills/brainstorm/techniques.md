@@ -278,6 +278,23 @@ use it, how to run it (AI facilitator instructions), and typical duration.
 - **Duration:** 2-3 min
 - **Output shape:** Objection list + user responses.
 
+### Pre-mortem
+
+- **Purpose:** Surface failure modes by imagining the project has already
+  failed, then working backwards to causes.
+- **When:** Risk surface is the question — releases, breaking changes,
+  data loss, day-1 install/parse failures. Use *after* a leading option
+  has emerged, not against early divergent ideas.
+- **How:** Frame: "It's six months from now and this shipped — and it
+  failed. Why?" AI lists 3-6 failure causes, ranked by severity. User
+  reacts and adds. Optionally tag each cause with a scope:
+  `day-1-blocker` (breaks first install/parse/run),
+  `migration-blocker`, or `silent-drift`. Convert top causes into
+  mitigations or kill-criteria.
+- **Duration:** 3-5 min
+- **Output shape:** Ranked failure-cause list with severity tag and
+  mitigation per row.
+
 ### Constraint Mapping
 
 - **Purpose:** Surface hidden constraints before diverging.
